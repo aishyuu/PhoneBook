@@ -37,4 +37,25 @@ internal class ContactServices
 
         return newContact;
     }
+
+    internal static Contact GetContact()
+    {
+        List<Contact> allContacts = ContactController.ViewAllContacts();
+        string[] allChoice = new string[allContacts.Count];
+        int count = 0;
+
+        foreach(Contact choice in allContacts)
+        {
+            allChoice[count] = choice.Name;
+            count++;
+        }
+
+        var userChoice = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Choose the contact you want to see.")
+                .AddChoices(allChoice));
+
+        var contact = allContacts.SingleOrDefault(x => x.Name == userChoice);
+        return contact;
+    }
 }
