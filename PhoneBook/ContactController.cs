@@ -31,6 +31,7 @@ internal class ContactController
 
     internal static void ViewContact()
     {
-        throw new NotImplementedException();
+        Contact chosenContact = ContactServices.GetContact();
+        UserInterface.ShowContact(chosenContact);
     }
 }

@@ -32,8 +32,7 @@ while (programRunning)
             UserInterface.ShowAllContacts(allContacts);
             break;
         case MenuOptions.ViewContact:
-            Contact chosenContact = ContactServices.GetContact();
-            UserInterface.ShowContact(chosenContact);
+            ContactController.ViewContact();
             break;
     }
 }
