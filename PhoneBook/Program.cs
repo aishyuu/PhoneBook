@@ -18,19 +18,20 @@ while (programRunning)
     switch(mainMenuResponse)
     {
         case MenuOptions.AddContact:
-            ProductController.AddContact();
+            Contact newContact = ContactServices.CreateNewContact();
+            ContactController.AddContact(newContact);
             break;
         case MenuOptions.DeleteContact:
-            ProductController.DeleteContact();
+            ContactController.DeleteContact();
             break;
         case MenuOptions.UpdateContact:
-            ProductController.UpdateContact();
+            ContactController.UpdateContact();
             break;
         case MenuOptions.ViewAllContacts:
-            ProductController.ViewAllContacts();
+            ContactController.ViewAllContacts();
             break;
         case MenuOptions.ViewContact:
-            ProductController.ViewContact();
+            ContactController.ViewContact();
             break;
     }
 }
