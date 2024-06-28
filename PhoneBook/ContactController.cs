@@ -13,7 +13,11 @@ internal class ContactController
 
     internal static void DeleteContact()
     {
-        throw new NotImplementedException();
+        using var db = new ContactContext();
+        Contact contactToDelete = ContactServices.GetContact();
+
+        db.Remove(contactToDelete);
+        db.SaveChanges();
     }
 
     internal static void UpdateContact()
