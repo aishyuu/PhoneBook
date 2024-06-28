@@ -21,9 +21,12 @@ internal class ContactController
         throw new NotImplementedException();
     }
 
-    internal static void ViewAllContacts()
+    internal static List<Contact> ViewAllContacts()
     {
-        throw new NotImplementedException();
+        using var db = new ContactContext();
+        var contacts = db.Contacts.ToList<Contact>();
+
+        return contacts;
     }
 
     internal static void ViewContact()

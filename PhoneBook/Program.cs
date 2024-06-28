@@ -28,7 +28,8 @@ while (programRunning)
             ContactController.UpdateContact();
             break;
         case MenuOptions.ViewAllContacts:
-            ContactController.ViewAllContacts();
+            List<Contact> allContacts = ContactController.ViewAllContacts();
+            UserInterface.ShowAllContacts(allContacts);
             break;
         case MenuOptions.ViewContact:
             ContactController.ViewContact();
