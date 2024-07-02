@@ -58,4 +58,56 @@ internal class ContactServices
         var contact = allContacts.SingleOrDefault(x => x.Name == userChoice);
         return contact;
     }
+
+    internal static Contact AlterContact(Contact contact)
+    {
+        AnsiConsole.MarkupInterpolated($"Current Contact Information\n");
+        UserInterface.ShowContact(contact);
+
+        var verificationLoop = true;
+
+        string newName = AnsiConsole.Prompt(
+            new TextPrompt<string>("What's the new name? Don't enter anything if you want to keep the current name.").AllowEmpty<string>());
+        if (newName.Trim() != "")
+        {
+            contact.Name = newName;
+        }
+
+        string newEmail = AnsiConsole.Prompt(
+            new TextPrompt<string>("What's the new Email? Don't enter anything if you want to keep the current Email.").AllowEmpty<string>());
+        while (verificationLoop)
+        {
+            if(newEmail.Trim() == "")
+            {
+                break;
+            }
+
+            if (Validation.EmailValidation(newEmail))
+            {
+                contact.Email = newEmail;
+                break;
+            }
+            newEmail = AnsiConsole.Prompt(
+                new TextPrompt<string>("[red]Wrong Format![/] Try again!").AllowEmpty<string>());
+        }
+
+        string newPhone = AnsiConsole.Prompt(
+            new TextPrompt<string>("What's the new Phone? Don't enter anything if you want to keep the current Phone.").AllowEmpty<string>());
+        while (verificationLoop)
+        {
+            if (newPhone.Trim() == "")
+            {
+                break;
+            }
+            if (Validation.PhoneValidation(newPhone))
+            {
+                contact.PhoneNumber = newPhone;
+                break;
+            }
+            newPhone = AnsiConsole.Prompt(
+                new TextPrompt<string>("[red]Wrong Format![/] Try again!").AllowEmpty<string>());
+        }
+
+        return contact;
+    }
 }

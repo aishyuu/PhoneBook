@@ -25,7 +25,9 @@ while (programRunning)
             ContactController.DeleteContact();
             break;
         case MenuOptions.UpdateContact:
-            ContactController.UpdateContact();
+            Contact contactToUpdate = ContactServices.GetContact();
+            contactToUpdate = ContactServices.AlterContact(contactToUpdate);
+            ContactController.UpdateContact(contactToUpdate);
             break;
         case MenuOptions.ViewAllContacts:
             List<Contact> allContacts = ContactController.ViewAllContacts();

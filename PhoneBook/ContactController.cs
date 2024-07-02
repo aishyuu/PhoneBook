@@ -20,9 +20,11 @@ internal class ContactController
         db.SaveChanges();
     }
 
-    internal static void UpdateContact()
+    internal static void UpdateContact(Contact contact)
     {
-        throw new NotImplementedException();
+        using var db = new ContactContext();
+        db.Update(contact);
+        db.SaveChanges();
     }
 
     internal static List<Contact> ViewAllContacts()
